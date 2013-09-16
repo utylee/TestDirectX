@@ -11,6 +11,24 @@
 #define new DEBUG_NEW
 #endif
 
+// DirectX 관련 헤더 인클루드
+#include <d3d11.h>
+
+// DirectX 관련 lib 추가
+#pragma comment (lib, "d3d11.lib")
+
+// DirectX 전역 선언
+IDXGISwapChain	*swapchain;
+ID3D11Device	*dev;
+ID3D11DeviceContext	*devcon;
+
+// DirectX 함수선언
+
+// Direct3D를 셋업하고 초기화한다
+void InitD3D(HWND hWnd);	
+
+// Direct3D를 닫고 릴리즈한다
+void Clean3D(void);
 
 // 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
 
@@ -29,6 +47,59 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 };
+
+// 이 함수는 Direct3D를 사용하기 위한 초기화작업 및 준비작업을 합니다.
+void InitD3D( HWND hWnd )
+{
+	// 스왑체인의 구조체를 선언합니다
+	DXGI_SWAP_CHAIN_DESC scd;
+
+	// 구조체를 초기화합니다
+	ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
+
+	// 스왑체인 구조체를 채워넣습니다
+
+	// 버퍼 개수를 정합니다
+	scd.BufferCount = 1;
+
+	//32bit 칼라를 사용합니다
+	scd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	// 스왑체인을 어떻게 사용할 지 알려줍니다
+	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+
+	// 사용될 윈도우를 알려줍니다.
+	scd.OutputWindow = hWnd;
+
+	// 멀티샘플 사용 수를 정합니다
+	scd.SampleDesc.Count = 4;
+
+	// 창모드/ 전체화면 모드를 정합니다
+	scd.Windowed = TRUE;
+
+	// device, device-context, 스왑체인 등을 생성합니다 - scd 구조체를 이용합니다
+	D3D11CreateDeviceAndSwapChain(NULL,
+									D3D_DRIVER_TYPE_HARDWARE,
+									NULL,
+									NULL,
+									NULL,
+									NULL,
+									D3D11_SDK_VERSION,
+									&scd,
+									&swapchain,
+									&dev,
+									NULL,
+									&devcon);
+
+}
+
+// Direct3D를 닫고, 릴리즈합니다
+void Clean3D( void )
+{
+	swapchain->Release();
+	dev->Release();
+	devcon->Release();
+}
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 {
