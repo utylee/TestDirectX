@@ -1,14 +1,14 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++¿¡¼­ »ý¼ºÇÑ Æ÷ÇÔ ÆÄÀÏÀÔ´Ï´Ù.
-// TestDirectX.rc¿¡¼­ »ç¿ëµË´Ï´Ù.
+ï»¿//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ì—ì„œ ìƒì„±í•œ í¬í•¨ íŒŒì¼ìž…ë‹ˆë‹¤.
+// TestDirectX.rcì—ì„œ ì‚¬ìš©ë©ë‹ˆë‹¤.
 //
 #define IDR_MAINFRAME					128
 #define IDM_ABOUTBOX					0x0010
 #define IDD_ABOUTBOX					100
 #define IDS_ABOUTBOX					101
-#define IDD_TESTDIRECTX_DIALOG				102
+#define IDD_TESTDIRECTX_DIALOG				102 
 
-// ´ÙÀ½Àº »õ °³Ã¼¿¡ »ç¿ëÇÒ ±âº»°ªÀÔ´Ï´Ù.
+// ë‹¤ìŒì€ ìƒˆ ê°œì²´ì— ì‚¬ìš©í•  ê¸°ë³¸ê°’ìž…ë‹ˆë‹¤.
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
